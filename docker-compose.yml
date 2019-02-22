@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mongoservice:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - testnet
+  web:
+    # The image that runs the python code
+    image: vikrantatxoriant/testserver:16
+    ports:
+      - "80:80"
+    networks:
+      - testnet
+    depends_on:
+      - "mongoservice"
+networks:
+  testnet:
